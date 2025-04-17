@@ -70,7 +70,6 @@ export default {
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
-        playfair: ['Playfair Display', 'serif'],
       },
       keyframes: {
         "accordion-down": {
