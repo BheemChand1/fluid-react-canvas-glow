@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
+import { Menu, Phone, Mail, MapPin, ChevronDown, X } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -8,6 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const services = [
   "Roof Repairs",
@@ -19,14 +26,14 @@ const services = [
 ];
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="w-full font-poppins">
       {/* Top Info Bar */}
       <div className="bg-gradient-to-r from-amber-800 to-amber-700 py-2 px-4 text-sm text-white">
         <div className="container mx-auto flex flex-wrap justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-2">
             <MapPin size={16} />
             <span>10 Clarence St, Kingston upon Thames KT1 1NX</span>
           </div>
@@ -35,11 +42,11 @@ const Navbar = () => {
               <Phone size={16} />
               <span>02081541891</span>
             </div>
-            <div className="flex items-center space-x-2 hover:text-amber-200 transition-colors">
+            <div className="hidden md:flex items-center space-x-2 hover:text-amber-200 transition-colors">
               <Phone size={16} />
               <span>07534482463</span>
             </div>
-            <div className="flex items-center space-x-2 hover:text-amber-200 transition-colors">
+            <div className="hidden md:flex items-center space-x-2 hover:text-amber-200 transition-colors">
               <Mail size={16} />
               <span>Email Us</span>
             </div>
@@ -75,37 +82,69 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-amber-800"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <Menu size={24} />
-          </button>
-        </div>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="md:hidden text-amber-800">
+                <Menu size={24} />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[300px] bg-gradient-to-b from-amber-50 to-white">
+              <SheetHeader>
+                <SheetTitle className="text-2xl font-bold text-amber-800">Menu</SheetTitle>
+              </SheetHeader>
+              <div className="mt-8 flex flex-col gap-6">
+                <a href="#" className="text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors">
+                  Home
+                </a>
+                <a href="#" className="text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors">
+                  About Us
+                </a>
+                <div className="space-y-4">
+                  <p className="text-lg font-medium text-gray-800">Services</p>
+                  <div className="ml-4 flex flex-col gap-3">
+                    {services.map((service) => (
+                      <a
+                        key={service}
+                        href="#"
+                        className="text-gray-600 hover:text-amber-700 transition-colors"
+                      >
+                        {service}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <a href="#" className="text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors">
+                  Gallery
+                </a>
+                <a href="#" className="text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors">
+                  Contact Us
+                </a>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 animate-fade-in">
-            <div className="container mx-auto py-4 px-4 flex flex-col gap-4">
-              <a href="#" className="hover:text-amber-700 transition-colors font-medium">Home</a>
-              <a href="#" className="hover:text-amber-700 transition-colors font-medium">About Us</a>
-              <div className="flex flex-col gap-2">
-                <span className="font-medium">Services</span>
-                {services.map((service) => (
-                  <a 
-                    key={service}
-                    href="#" 
-                    className="pl-4 hover:text-amber-700 transition-colors"
-                  >
-                    {service}
-                  </a>
-                ))}
+                {/* Mobile Contact Info */}
+                <div className="mt-8 pt-8 border-t border-gray-200">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Phone size={18} />
+                      <span>02081541891</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Phone size={18} />
+                      <span>07534482463</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Mail size={18} />
+                      <span>Email Us</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <MapPin size={18} />
+                      <span className="text-sm">10 Clarence St, Kingston upon Thames KT1 1NX</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <a href="#" className="hover:text-amber-700 transition-colors font-medium">Gallery</a>
-              <a href="#" className="hover:text-amber-700 transition-colors font-medium">Contact Us</a>
-            </div>
-          </div>
-        )}
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
     </div>
   );
