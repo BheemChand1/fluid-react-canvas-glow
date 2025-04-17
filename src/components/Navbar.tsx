@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, Phone, Mail, MapPin, ChevronDown, X } from 'lucide-react';
+import { Menu, Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ import {
 
 const services = [
   "Roof Repairs",
-  "Guttering Services",
+  "Guttering Services", 
   "Flat Roofing",
   "Emergency Repairs",
   "Roof Inspections",
@@ -30,25 +30,25 @@ const Navbar = () => {
 
   return (
     <div className="w-full font-poppins">
-      {/* Top Info Bar */}
-      <div className="bg-gradient-to-r from-amber-800 to-amber-700 py-2 px-4 text-sm text-white">
-        <div className="container mx-auto flex flex-wrap justify-between items-center">
-          <div className="hidden md:flex items-center space-x-2">
+      {/* Top Info Bar - Now fully visible on mobile */}
+      <div className="bg-gradient-to-r from-amber-800 to-amber-700 py-3 px-4 text-sm text-white">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+          <div className="flex items-center space-x-2 w-full justify-center md:justify-start">
             <MapPin size={16} />
-            <span>10 Clarence St, Kingston upon Thames KT1 1NX</span>
+            <span className="text-xs sm:text-sm">10 Clarence St, Kingston upon Thames KT1 1NX</span>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4 justify-center md:justify-end w-full">
             <div className="flex items-center space-x-2 hover:text-amber-200 transition-colors">
               <Phone size={16} />
-              <span>02081541891</span>
+              <span className="text-xs sm:text-sm">Landline: 02081541891</span>
             </div>
-            <div className="hidden md:flex items-center space-x-2 hover:text-amber-200 transition-colors">
+            <div className="flex items-center space-x-2 hover:text-amber-200 transition-colors">
               <Phone size={16} />
-              <span>07534482463</span>
+              <span className="text-xs sm:text-sm">Mobile: 07534482463</span>
             </div>
-            <div className="hidden md:flex items-center space-x-2 hover:text-amber-200 transition-colors">
+            <div className="flex items-center space-x-2 hover:text-amber-200 transition-colors">
               <Mail size={16} />
-              <span>Email Us</span>
+              <span className="text-xs sm:text-sm">Email Us</span>
             </div>
           </div>
         </div>
@@ -151,3 +151,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
