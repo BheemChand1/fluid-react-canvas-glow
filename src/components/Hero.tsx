@@ -23,7 +23,7 @@ const Hero = () => {
           {images.map((image, index) => (
             <CarouselItem key={index} className="h-full">
               <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 ease-out"
+                className="w-full h-full bg-cover bg-center"
                 style={{
                   backgroundImage: `url("${image}")`,
                 }}
@@ -34,24 +34,26 @@ const Hero = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-4 text-white border-white hover:bg-white/20" />
-        <CarouselNext className="right-4 text-white border-white hover:bg-white/20" />
+        <div className="absolute z-10 inset-0 flex items-center justify-between px-4">
+          <CarouselPrevious className="relative left-0 text-white border-white hover:bg-white/20" />
+          <CarouselNext className="relative right-0 text-white border-white hover:bg-white/20" />
+        </div>
       </Carousel>
 
       {/* Content */}
-      <div className="relative container mx-auto h-full flex items-center px-4">
-        <div className="max-w-2xl text-white space-y-6 animate-fade-in">
-          <h2 className="text-xl font-medium text-amber-400 animate-slide-in drop-shadow-lg hover:scale-105 transition-transform duration-300">
+      <div className="absolute inset-0 z-20 container mx-auto h-full flex items-center px-4">
+        <div className="max-w-2xl text-white space-y-6">
+          <h2 className="text-xl font-medium text-amber-400 drop-shadow-lg hover:scale-105 transition-transform duration-300">
             Roofing And Guttering Experts
           </h2>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg animate-fade-in hover:text-amber-50 transition-colors duration-300">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg hover:text-amber-50 transition-colors duration-300 font-playfair">
             Welcome To JB Roofing And Building Ltd
           </h1>
-          <p className="text-lg md:text-xl opacity-90 drop-shadow-md animate-fade-in hover:opacity-100 transition-opacity duration-300">
+          <p className="text-lg md:text-xl opacity-90 drop-shadow-md hover:opacity-100 transition-opacity duration-300">
             At JB Roofing And Building Ltd, we specialize in delivering top-quality roofing and
             guttering solutions tailored to meet your residential and commercial needs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
+          <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex items-center gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-6 py-3 rounded-md cursor-pointer hover:scale-105">
               <Phone size={20} />
               <span>Freephone : 07534482463</span>
