@@ -22,12 +22,12 @@ const Hero = () => {
         <CarouselContent className="h-full">
           {images.map((image, index) => (
             <CarouselItem key={index} className="h-full">
-              <div 
-                className="w-full h-full bg-cover bg-center"
-                style={{
-                  backgroundImage: `url("${image}")`,
-                }}
-              >
+              <div className="w-full h-full">
+                <img 
+                  src={image}
+                  alt={`Hero image ${index + 1}`}
+                  className="w-full h-full object-cover object-center"
+                />
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
               </div>
