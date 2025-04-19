@@ -91,10 +91,17 @@ const ServiceSection = () => {
           </p>
         </div>
 
-        <Carousel className="w-full max-w-5xl mx-auto">
+        <Carousel className="w-full max-w-5xl mx-auto" opts={{
+          loop: true,
+          align: "start",
+          skipSnaps: false,
+          inViewThreshold: 0.7,
+          autoplay: true,
+          delay: 4000
+        }}>
           <CarouselContent>
             {services.map((item, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 transition-all duration-500">
                 <div className="p-1">
                   <AspectRatio ratio={1}>
                     <img

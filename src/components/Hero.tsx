@@ -4,8 +4,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -20,16 +18,23 @@ const Hero = () => {
 
   return (
     <div className="relative h-[60vh] md:h-[80vh] overflow-hidden">
-      {/* Image Carousel */}
-      <Carousel className="w-full h-full" opts={{ loop: true }}>
+      {/* Image Carousel with Autoplay */}
+      <Carousel className="w-full h-full" opts={{ 
+        loop: true,
+        align: "start",
+        skipSnaps: false,
+        inViewThreshold: 0.7,
+        autoplay: true,
+        delay: 5000
+      }}>
         <CarouselContent className="h-full">
           {images.map((image, index) => (
-            <CarouselItem key={index} className="h-full">
+            <CarouselItem key={index} className="h-full transition-transform duration-500 ease-in-out">
               <div className="w-full h-full">
                 <img 
                   src={image}
                   alt={`Hero image ${index + 1}`}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center transition-opacity duration-500"
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:from-black/70" />
@@ -37,10 +42,6 @@ const Hero = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="absolute z-10 inset-0 flex items-center justify-between px-2 md:px-4">
-          <CarouselPrevious className="h-8 w-8 md:h-10 md:w-10 relative left-0 text-white border-white hover:bg-white/20" />
-          <CarouselNext className="h-8 w-8 md:h-10 md:w-10 relative right-0 text-white border-white hover:bg-white/20" />
-        </div>
       </Carousel>
 
       {/* Content */}
