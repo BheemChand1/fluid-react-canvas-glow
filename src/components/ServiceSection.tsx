@@ -1,7 +1,8 @@
 
+import { useEffect, useCallback } from 'react';
 import { GalleryHorizontal } from 'lucide-react';
 import { AspectRatio } from './ui/aspect-ratio';
-import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const services = [
   {
@@ -37,6 +38,37 @@ const services = [
 ];
 
 const ServiceSection = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: "start",
+    skipSnaps: false,
+  });
+
+  // Auto-rotation logic
+  const autoplay = useCallback(() => {
+    if (!emblaApi) return;
+    
+    const timer = setTimeout(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+      autoplay();
+    }, 4000);
+    
+    return () => clearTimeout(timer);
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    autoplay();
+    
+    return () => {
+      // Cleanup autoplay on unmount
+    };
+  }, [emblaApi, autoplay]);
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -91,17 +123,10 @@ const ServiceSection = () => {
           </p>
         </div>
 
-        <Carousel className="w-full max-w-5xl mx-auto" opts={{
-          loop: true,
-          align: "start",
-          skipSnaps: false,
-          inViewThreshold: 0.7,
-          autoplay: true,
-          delay: 4000
-        }}>
-          <CarouselContent>
+        <div className="w-full max-w-5xl mx-auto overflow-hidden" ref={emblaRef}>
+          <div className="flex">
             {services.map((item, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 transition-all duration-500">
+              <div key={index} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 transition-all duration-500">
                 <div className="p-1">
                   <AspectRatio ratio={1}>
                     <img
@@ -111,10 +136,10 @@ const ServiceSection = () => {
                     />
                   </AspectRatio>
                 </div>
-              </CarouselItem>
+              </div>
             ))}
-          </CarouselContent>
-        </Carousel>
+          </div>
+        </div>
       </div>
     </section>
   );

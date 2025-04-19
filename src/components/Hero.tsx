@@ -1,4 +1,5 @@
 
+import { useEffect, useCallback } from 'react';
 import { Phone } from 'lucide-react';
 import {
   Carousel,
@@ -6,6 +7,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import useEmblaCarousel from 'embla-carousel-react';
 
 const images = [
   "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
@@ -15,21 +17,44 @@ const images = [
 
 const Hero = () => {
   const isMobile = useIsMobile();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: "start",
+    skipSnaps: false,
+  });
+
+  // Auto-rotation logic
+  const autoplay = useCallback(() => {
+    if (!emblaApi) return;
+    
+    const timer = setTimeout(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+      autoplay();
+    }, 5000);
+    
+    return () => clearTimeout(timer);
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    autoplay();
+    
+    return () => {
+      // Cleanup autoplay on unmount
+    };
+  }, [emblaApi, autoplay]);
 
   return (
     <div className="relative h-[60vh] md:h-[80vh] overflow-hidden">
       {/* Image Carousel with Autoplay */}
-      <Carousel className="w-full h-full" opts={{ 
-        loop: true,
-        align: "start",
-        skipSnaps: false,
-        inViewThreshold: 0.7,
-        autoplay: true,
-        delay: 5000
-      }}>
-        <CarouselContent className="h-full">
+      <div className="w-full h-full overflow-hidden" ref={emblaRef}>
+        <div className="flex h-full">
           {images.map((image, index) => (
-            <CarouselItem key={index} className="h-full transition-transform duration-500 ease-in-out">
+            <div key={index} className="flex-[0_0_100%] h-full min-w-0 transition-transform duration-500 ease-in-out">
               <div className="w-full h-full">
                 <img 
                   src={image}
@@ -39,10 +64,10 @@ const Hero = () => {
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:from-black/70" />
               </div>
-            </CarouselItem>
+            </div>
           ))}
-        </CarouselContent>
-      </Carousel>
+        </div>
+      </div>
 
       {/* Content */}
       <div className="absolute inset-0 z-20 container mx-auto h-full flex items-center px-4">
