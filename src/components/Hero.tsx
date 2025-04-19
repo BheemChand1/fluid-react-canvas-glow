@@ -1,13 +1,6 @@
-
-import { useEffect, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Phone } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
-import useEmblaCarousel from 'embla-carousel-react';
 
 const images = [
   "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
@@ -17,61 +10,39 @@ const images = [
 
 const Hero = () => {
   const isMobile = useIsMobile();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    align: "start",
-    skipSnaps: false,
-  });
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-rotation logic
-  const autoplay = useCallback(() => {
-    if (!emblaApi) return;
-    
-    const timer = setTimeout(() => {
-      if (emblaApi.canScrollNext()) {
-        emblaApi.scrollNext();
-      } else {
-        emblaApi.scrollTo(0);
-      }
-      autoplay();
-    }, 5000);
-    
-    return () => clearTimeout(timer);
-  }, [emblaApi]);
+  // Autoplay logic
+  const nextImage = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  }, []);
 
   useEffect(() => {
-    if (!emblaApi) return;
-    autoplay();
-    
-    return () => {
-      // Cleanup autoplay on unmount
-    };
-  }, [emblaApi, autoplay]);
+    const interval = setInterval(() => {
+      nextImage();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [nextImage]);
 
   return (
     <div className="relative h-[60vh] md:h-[80vh] overflow-hidden">
-      {/* Image Carousel with Autoplay */}
-      <div className="w-full h-full overflow-hidden" ref={emblaRef}>
-        <div className="flex h-full">
-          {images.map((image, index) => (
-            <div key={index} className="flex-[0_0_100%] h-full min-w-0 transition-transform duration-500 ease-in-out">
-              <div className="w-full h-full">
-                <img 
-                  src={image}
-                  alt={`Hero image ${index + 1}`}
-                  className="w-full h-full object-cover object-center transition-opacity duration-500"
-                />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:from-black/70" />
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Crossfade Carousel */}
+      <div className="w-full h-full relative">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Hero image ${index + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[2000ms] ease-in-out ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          />
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:from-black/70 z-10" />
       </div>
 
       {/* Content */}
       <div className="absolute inset-0 z-20 container mx-auto h-full flex items-center px-4">
-        <div className="max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl text-white space-y-3 md:space-y-6">
+      <div className="max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl text-white space-y-3 md:space-y-6 bg-black/40 p-4 rounded-xl shadow-xl transition-all duration-500">
+
           <h2 className="text-base md:text-xl font-medium text-amber-400 drop-shadow-lg hover:scale-105 transition-transform duration-300">
             Roofing And Guttering Experts
           </h2>
@@ -83,11 +54,11 @@ const Hero = () => {
             guttering solutions tailored to meet your residential and commercial needs.
           </p>
           <div className="flex flex-col xs:flex-row gap-2 md:gap-4">
-            <div className="flex items-center gap-1 md:gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-3 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
+            <div className="flex items-center gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
               <Phone size={isMobile ? 16 : 20} />
               <span>Freephone : 07534482463</span>
             </div>
-            <div className="flex items-center gap-1 md:gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-3 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
+            <div className="flex items-center gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
               <Phone size={isMobile ? 16 : 20} />
               <span>Mobile : 07534482463</span>
             </div>
