@@ -1,14 +1,10 @@
 
 import { useEffect, useCallback } from 'react';
 import { Phone } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useEmblaCarousel from 'embla-carousel-react';
 
+// Limiting to exactly 3 photos as requested
 const images = [
   "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
@@ -61,8 +57,8 @@ const Hero = () => {
                   alt={`Hero image ${index + 1}`}
                   className="w-full h-full object-cover object-center transition-opacity duration-500"
                 />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent md:from-black/70" />
+                {/* Enhanced Gradient Overlay for better text visibility */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
               </div>
             </div>
           ))}
