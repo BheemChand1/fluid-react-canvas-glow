@@ -1,50 +1,49 @@
-import { GalleryHorizontal } from 'lucide-react';
-import { AspectRatio } from './ui/aspect-ratio';
-import { motion } from 'framer-motion';
+
+import { GalleryHorizontal } from "lucide-react";
+import { motion } from "framer-motion";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: (i) => ({
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
+    transition: { delay: i * 0.11, duration: 0.5, ease: "easeOut" },
   }),
 };
 
-const defaultServices = [
-  {
-    title: "Residential Roofing",
-    description: "Expert roofing solutions for homes",
-    image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    title: "Commercial Projects",
-    description: "Business property solutions",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    title: "Emergency Repairs",
-    description: "24/7 emergency services",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop"
-  },
-  {
-    title: "Roof Maintenance",
-    description: "Regular maintenance services",
-    image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    title: "Gutter Services",
-    description: "Complete gutter solutions",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    title: "Roof Inspection",
-    description: "Detailed roof assessments",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop"
-  }
+// Use a set of visually attractive gradients for the cards
+const gradients = [
+  "bg-gradient-to-br from-[#f97316]/90 via-[#fbbf24]/90 to-[#fde68a]/90",
+  "bg-gradient-to-br from-[#8B5CF6]/80 via-[#9b87f5]/80 to-[#D6BCFA]/80",
+  "bg-gradient-to-br from-[#34d399]/90 via-[#6ee7b7]/90 to-[#d1fae5]/90",
+  "bg-gradient-to-tl from-[#0ea5e9]/80 via-[#4f46e5]/80 to-[#fbcfe8]/80",
+  "bg-gradient-to-tr from-[#ec4899]/80 via-[#f472b6]/80 to-[#f9a8d4]/80",
+  "bg-gradient-to-r from-[#9f7aea]/80 via-[#f6e05e]/80 to-[#48bb78]/80",
+  "bg-gradient-to-bl from-[#f472b6]/80 via-[#c084fc]/80 to-[#9333ea]/80",
+  "bg-gradient-to-r from-[#d97706]/80 via-[#fbbf24]/80 to-[#fde68a]/80",
+  "bg-gradient-to-r from-[#f59e42]/80 via-[#f08fc0]/80 to-[#a1c4fd]/80",
+  "bg-gradient-to-tr from-[#fca5a5]/80 via-[#fdba74]/80 to-[#fef3c7]/80",
+  "bg-gradient-to-br from-[#7E69AB]/90 via-[#D6BCFA]/90 to-[#FDE1D3]/90",
+  "bg-gradient-to-tl from-[#38bdf8]/90 via-[#818cf8]/90 to-[#a7f3d0]/90",
 ];
 
-export default function ServicesSection({ services = defaultServices, emblaRef }) {
+const serviceList = [
+  "New roofs (slate / tile)",
+  "Roof repairs",
+  "UPVC fascias & guttering",
+  "GRP fibreglass flat roofing",
+  "Valleys repaired & renewed",
+  "Gutters cleaned & repaired",
+  "Chimneys rebuilt & repointed",
+  "Moss removed",
+  "Roof cleaning (jet washing)",
+  "All building work",
+  "Exterior pointing & rendering",
+  "All damp work undertaken",
+  "All flat roofs covered"
+];
+
+export default function ServicesSection({ emblaRef }: { emblaRef?: React.Ref<HTMLDivElement> }) {
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 font-[Poppins]">
       {/* Services Heading */}
@@ -54,7 +53,7 @@ export default function ServicesSection({ services = defaultServices, emblaRef }
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 bg-gradient-to-r from-amber-500 to-pink-500 bg-clip-text text-transparent mb-4 tracking-tight">
             Services We Provide
@@ -68,78 +67,20 @@ export default function ServicesSection({ services = defaultServices, emblaRef }
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {serviceList.map((service, idx) => (
             <motion.div
-              key={index}
-              custom={index}
+              key={service}
+              custom={idx}
               initial="hidden"
               whileInView="visible"
               variants={fadeUp}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02]"
+              className={`rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-400 p-6 text-center min-h-[100px] flex items-center justify-center font-semibold text-base md:text-lg text-gray-900  ${gradients[idx % gradients.length]} border-2 border-white/30 hover:scale-105`}
             >
-              <div className="relative overflow-hidden rounded-t-2xl">
-                <AspectRatio ratio={4 / 3}>
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                </AspectRatio>
-              </div>
-              <div className="p-5">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+              {service}
             </motion.div>
           ))}
-        </div>
-      </div>
-
-      {/* Gallery Section */}
-      <div className="container mx-auto px-4 mt-24">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 bg-gradient-to-r from-indigo-500 to-sky-500 bg-clip-text text-transparent">
-            Our Gallery
-          </h2>
-          <p className="text-lg md:text-xl text-gray-700">
-            Explore Our Recent Projects
-          </p>
-        </motion.div>
-
-        <div className="w-full max-w-6xl mx-auto overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            {services.map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 transition-all duration-500"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <div className="p-2">
-                  <AspectRatio ratio={1}>
-                    <img
-                      src={item.image}
-                      alt={`Gallery image ${index + 1}`}
-                      className="rounded-xl object-cover w-full h-full hover:scale-105 transition-transform duration-300 shadow-md"
-                    />
-                  </AspectRatio>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
