@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useCallback } from 'react';
 import { Phone } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -7,6 +8,8 @@ const images = [
   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop"
 ];
+
+const gradientStyle = "bg-gradient-to-r from-yellow-500 via-orange-600 to-red-700 text-transparent bg-clip-text font-bold";
 
 const Hero = () => {
   const isMobile = useIsMobile();
@@ -43,7 +46,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-20 container mx-auto h-full flex items-center px-4">
       <div className="max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl text-white space-y-3 md:space-y-6 bg-black/40 p-4 rounded-xl shadow-xl transition-all duration-500">
 
-          <h2 className="text-base md:text-xl font-medium text-amber-400 drop-shadow-lg hover:scale-105 transition-transform duration-300">
+          <h2 className={`text-base md:text-xl drop-shadow-lg hover:scale-105 transition-transform duration-300 ${gradientStyle}`}>
             Roofing And Guttering Experts
           </h2>
           <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-lg hover:text-amber-50 transition-colors duration-300 font-playfair">
@@ -54,11 +57,11 @@ const Hero = () => {
             guttering solutions tailored to meet your residential and commercial needs.
           </p>
           <div className="flex flex-col xs:flex-row gap-2 md:gap-4">
-            <div className="flex items-center gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
+            <div className={`flex items-center gap-2 hover:scale-105 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer text-sm md:text-base ${gradientStyle}`}>
               <Phone size={isMobile ? 16 : 20} />
               <span>Freephone : 07534482463</span>
             </div>
-            <div className="flex items-center gap-2 bg-amber-700/90 hover:bg-amber-800/90 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
+            <div className={`flex items-center gap-2 hover:scale-105 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer text-sm md:text-base ${gradientStyle}`}>
               <Phone size={isMobile ? 16 : 20} />
               <span>Mobile : 07534482463</span>
             </div>
@@ -70,3 +73,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
