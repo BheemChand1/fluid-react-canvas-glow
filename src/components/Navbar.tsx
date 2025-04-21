@@ -16,13 +16,21 @@ import {
 } from "@/components/ui/sheet";
 
 const services = [
-  "Roof Repairs",
-  "Guttering Services", 
-  "Flat Roofing",
-  "Emergency Repairs",
-  "Roof Inspections",
-  "Chimney Repairs"
+  "New roofs (slate / tile)",
+  "Roof repairs",
+  "UPVC fascias & guttering",
+  "GRP fibreglass flat roofing",
+  "Valleys repaired & renewed",
+  "Gutters cleaned & repaired",
+  "Chimneys rebuilt & repointed",
+  "Moss removed",
+  "Roof cleaning (jet washing)",
+  "All building work",
+  "Exterior pointing & rendering",
+  "All damp work undertaken",
+  "All flat roofs covered"
 ];
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -39,16 +47,16 @@ const Navbar = () => {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <div className="flex items-center space-x-2 w-full justify-center md:justify-start">
             <MapPin size={16} />
-            <span className="text-xs sm:text-sm">10 Clarence St, Kingston upon Thames KT1 1NX</span>
+            <span className="text-xs sm:text-sm">14 Central Avenue, Hounslow, TW32QH</span>
           </div>
           <div className="flex flex-wrap items-center gap-4 justify-center md:justify-end w-full">
             <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Phone size={16} />
-              <span className="text-xs sm:text-sm">Landline: 02081541891</span>
+              <span className="text-xs sm:text-sm">Landline: +44 7946 750364</span>
             </div>
             <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Phone size={16} />
-              <span className="text-xs sm:text-sm">Mobile: 07534482463</span>
+              <span className="text-xs sm:text-sm">Mobile: 8126016597</span>
             </div>
             <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Mail size={16} />
@@ -147,11 +155,11 @@ const Navbar = () => {
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-gray-600">
                       <Phone size={18} />
-                      <span>02081541891</span>
+                      <span>+44 7946 750364</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600">
                       <Phone size={18} />
-                      <span>07534482463</span>
+                      <span>+44 7946 750364</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600">
                       <Mail size={18} />
@@ -159,7 +167,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex items-center gap-2 text-gray-600">
                       <MapPin size={18} />
-                      <span className="text-sm">10 Clarence St, Kingston upon Thames KT1 1NX</span>
+                      <span className="text-sm">14 Central Avenue, Hounslow, TW32QH</span>
                     </div>
                   </div>
                 </div>
