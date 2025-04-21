@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
+import { Menu, Phone, Mail, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -27,6 +27,13 @@ const services = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  // State for mobile sidebar "Services" submenu
+  const [servicesOpen, setServicesOpen] = useState(false);
+
+  // Function to toggle the submenu on tap/click
+  const handleServicesToggle = () => {
+    setServicesOpen((prev) => !prev);
+  };
 
   return (
     <div className="w-full font-poppins">
@@ -99,18 +106,36 @@ const Navbar = () => {
                 <a href="#" className="text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors">
                   About Us
                 </a>
-                <div className="space-y-4">
-                  <p className="text-lg font-medium text-gray-800">Services</p>
-                  <div className="ml-4 flex flex-col gap-3">
-                    {services.map((service) => (
-                      <a
-                        key={service}
-                        href="#"
-                        className="text-gray-600 hover:text-amber-700 transition-colors"
-                      >
-                        {service}
-                      </a>
-                    ))}
+                {/* Expandable Services submenu for mobile */}
+                <div>
+                  <button
+                    aria-expanded={servicesOpen}
+                    aria-controls="services-submenu"
+                    className="w-full flex items-center justify-between text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors focus:outline-none"
+                    onClick={handleServicesToggle}
+                  >
+                    <span>Services</span>
+                    {servicesOpen ? (
+                      <ChevronUp size={18} className="transition-transform duration-200" />
+                    ) : (
+                      <ChevronDown size={18} className="transition-transform duration-200" />
+                    )}
+                  </button>
+                  <div
+                    id="services-submenu"
+                    className={`overflow-hidden transition-all duration-300 ${servicesOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="ml-4 mt-2 flex flex-col gap-3">
+                      {services.map((service) => (
+                        <a
+                          key={service}
+                          href="#"
+                          className="text-gray-600 hover:text-amber-700 transition-colors py-1"
+                        >
+                          {service}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <a href="#" className="text-lg font-medium text-gray-800 hover:text-amber-700 transition-colors">
