@@ -6,9 +6,9 @@ import ServiceSection from '../components/ServiceSection';
 import Footer from '../components/Footer';
 import ChooseUs from '@/components/ChooseUs';
 import InquiryForm from '@/components/InquiryForm';
+import LocationMap from '@/components/LocationMap';
 
 const Index = () => {
-  // Create emblaRef for the ServiceSection carousel
   const emblaRef = useRef(null);
   
   return (
@@ -18,6 +18,7 @@ const Index = () => {
       <ServiceSection />
       <ChooseUs />
       <InquiryForm />
+      <LocationMap />
       <Footer />
     </div>
   );
