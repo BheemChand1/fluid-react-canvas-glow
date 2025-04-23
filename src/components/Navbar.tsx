@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Menu, Phone, Mail, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
+import { Link } from "react-router-dom";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -56,11 +58,11 @@ const Navbar = () => {
             </div>
             <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Phone size={16} />
-              <span className="text-xs sm:text-sm">Mobile: 8126016597</span>
+              <span className="text-xs sm:text-sm">Mobile: +44 7946 750364</span>
             </div>
             <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Mail size={16} />
-              <span className="text-xs sm:text-sm">Email Us</span>
+              <span className="text-xs sm:text-sm">Email Us : Truetoproofingltdltd@gmail.com</span>
             </div>
           </div>
         </div>
@@ -75,8 +77,8 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#" className="hover:text-purple-700 transition-colors font-medium">Home</a>
-            <a href="#" className="hover:text-purple-700 transition-colors font-medium">About Us</a>
+            <Link to="/" className="hover:text-purple-700 transition-colors font-medium" >Home</Link>
+            <Link to="/about" className="hover:text-purple-700 transition-colors font-medium">About Us</Link>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 hover:text-purple-700 transition-colors font-medium">
                 Services <ChevronDown size={16} />
@@ -89,8 +91,8 @@ const Navbar = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <a href="#" className="hover:text-purple-700 transition-colors font-medium">Gallery</a>
-            <a href="#" className="hover:text-purple-700 transition-colors font-medium">Contact Us</a>
+            <Link to="/gallery" className="hover:text-purple-700 transition-colors font-medium">Gallery</Link>
+            <Link to="/contact" className="hover:text-purple-700 transition-colors font-medium">Contact Us</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -163,7 +165,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex items-center gap-2 text-gray-600">
                       <Mail size={18} />
-                      <span>Email Us</span>
+                      <span>Email Us : Truetoproofingltdltd@gmail.com</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600">
                       <MapPin size={18} />

@@ -25,6 +25,7 @@ const App = () => (
           <Route path="/contact" element={<ContactUs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

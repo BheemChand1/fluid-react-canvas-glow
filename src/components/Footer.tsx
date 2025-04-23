@@ -12,19 +12,19 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white mb-4">JB Roofing And Building Ltd</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">Truetop Roofing Ltd</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-amber-400" />
-                <span>123 Main Street, London, UK</span>
+                <span>14 Central Avenue, Hounslow, TW32QH</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-amber-400" />
-                <span>07534482463</span>
+                <span>+44 7946 750364</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-amber-400" />
-                <span>info@jbroofing.com</span>
+                <span>Truetoproofingltdltd@gmail.com</span>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center pt-8 mt-8 border-t border-gray-800">
           <p className="text-sm">
-            © {new Date().getFullYear()} JB Roofing And Building Ltd. All rights reserved.
+            © {new Date().getFullYear()} Truetop Roofing Ltd. All rights reserved.
           </p>
         </div>
       </div>

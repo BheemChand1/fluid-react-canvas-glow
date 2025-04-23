@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,77 +13,91 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100">
       <Navbar />
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-500 to-orange-600 bg-clip-text text-transparent">
+      <div className="container mx-auto px-4 py-20">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 bg-clip-text text-transparent tracking-tight">
           Get in Touch
         </h1>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border-none shadow-lg">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
-              
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full">
-                    <Phone className="text-white h-6 w-6" />
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <Card className="bg-white/70 backdrop-blur-lg border-none shadow-2xl rounded-3xl">
+            <CardContent className="p-10 space-y-8">
+              <h2 className="text-3xl font-semibold text-gray-800">Contact Information</h2>
+
+              <div className="space-y-6 text-gray-700 text-lg">
+                <div className="flex items-start gap-5">
+                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full shadow-md">
+                    <Phone className="text-white w-6 h-6" />
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
-                    <p className="text-gray-600">+44 7946 750364</p>
+                    <p>+44 7946 750364</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full">
-                    <Mail className="text-white h-6 w-6" />
+
+                <div className="flex items-start gap-5">
+                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full shadow-md">
+                    <Mail className="text-white w-6 h-6" />
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-gray-600">info@truetoproofing.com</p>
+                    <p>info@truetoproofing.com</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full">
-                    <MapPin className="text-white h-6 w-6" />
+
+                <div className="flex items-start gap-5">
+                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full shadow-md">
+                    <MapPin className="text-white w-6 h-6" />
                   </div>
                   <div>
                     <p className="font-medium">Address</p>
-                    <p className="text-gray-600">14 Central Avenue, Hounslow, TW32QH</p>
+                    <p>14 Central Avenue, Hounslow, TW32QH</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border-none shadow-lg">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Contact Form */}
+          <Card className="bg-white/70 backdrop-blur-lg border-none shadow-2xl rounded-3xl">
+            <CardContent className="p-10">
+              <h2 className="text-3xl font-semibold mb-8 text-gray-800">Send us a Message</h2>
+              <form onSubmit={handleSubmit} className="space-y-6 text-gray-700">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Your name" />
+                  <Label htmlFor="name" className="text-base">Name</Label>
+                  <Input
+                    id="name"
+                    placeholder="Your name"
+                    className="bg-white/90 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+                  />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="Your email" />
+                  <Label htmlFor="email" className="text-base">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Your email"
+                    className="bg-white/90 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+                  />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message" className="text-base">Message</Label>
                   <textarea
                     id="message"
-                    rows={4}
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    rows={5}
+                    className="w-full bg-white/90 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     placeholder="Your message"
                   ></textarea>
                 </div>
-                
-                <Button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white">
+
+                <Button
+                  type="submit"
+                  className="w-full text-lg font-medium bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-3 rounded-xl transition-all duration-300"
+                >
                   Send Message
                 </Button>
               </form>
