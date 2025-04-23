@@ -5,6 +5,7 @@ import Hero from '../components/Hero';
 import ServiceSection from '../components/ServiceSection';
 import Footer from '../components/Footer';
 import ChooseUs from '@/components/ChooseUs';
+import InquiryForm from '@/components/InquiryForm';
 
 const Index = () => {
   // Create emblaRef for the ServiceSection carousel
@@ -16,6 +17,7 @@ const Index = () => {
       <Hero />
       <ServiceSection />
       <ChooseUs />
+      <InquiryForm />
       <Footer />
     </div>
   );
