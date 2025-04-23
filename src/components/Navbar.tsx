@@ -107,12 +107,8 @@ const Navbar = () => {
                 <SheetTitle className="text-2xl font-bold text-purple-800">Menu</SheetTitle>
               </SheetHeader>
               <div className="mt-8 flex flex-col gap-6">
-                <a href="#" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">
-                  Home
-                </a>
-                <a href="#" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">
-                  About Us
-                </a>
+                <Link to="/" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">Home</Link>
+                <Link to="/about" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">About Us</Link>
                 {/* Expandable Services submenu for mobile */}
                 <div>
                   <button
@@ -145,12 +141,8 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-                <a href="#" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">
-                  Gallery
-                </a>
-                <a href="#" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">
-                  Contact Us
-                </a>
+                <Link to="/gallery" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">Gallery</Link>
+                <Link to="/contact" className="text-lg font-medium text-gray-800 hover:text-purple-700 transition-colors">Contact Us</Link>
 
                 {/* Mobile Contact Info */}
                 <div className="mt-8 pt-8 border-t border-gray-200">
