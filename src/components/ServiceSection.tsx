@@ -12,7 +12,6 @@ const fadeUp = {
 
 const cardBg = "bg-[radial-gradient(circle_at_top_left,_#9333ea33,_#ffffff)]";
 
-
 const serviceList = [
   {
     title: "New Roofs",
@@ -54,31 +53,6 @@ const serviceList = [
     image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
     description: "Safe removal of moss and debris to keep your roof clean and dry.",
   },
-  // {
-  //   title: "Roof Cleaning",
-  //   image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
-  //   description: "Jet washing and soft washing to restore roof appearance and function.",
-  // },
-  // {
-  //   title: "Building Work",
-  //   image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
-  //   description: "All types of domestic building projects with quality craftsmanship.",
-  // },
-  // {
-  //   title: "Rendering & Pointing",
-  //   image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
-  //   description: "Exterior surface restoration for weather resistance and clean finishes.",
-  // },
-  // {
-  //   title: "Damp Work",
-  //   image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
-  //   description: "Diagnosis and treatment of rising and penetrating damp issues.",
-  // },
-  // {
-  //   title: "Flat Roofs",
-  //   image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
-  //   description: "Complete flat roof installations and refurbishments with premium materials.",
-  // },
 ];
 
 export default function ServicesSection() {

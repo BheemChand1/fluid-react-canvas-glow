@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Phone } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
+import { motion } from 'framer-motion';
 
 const images = [
   "https://images.unsplash.com/photo-1632759145351-1d592919f522?q=80&w=2070&auto=format&fit=crop",
@@ -26,7 +27,7 @@ const Hero = () => {
 
   return (
     <div className="relative h-[60vh] md:h-[80vh] overflow-hidden">
-      {/* Crossfade Carousel */}
+      {/* Carousel */}
       <div className="w-full h-full relative">
         {images.map((image, index) => (
           <img
@@ -50,16 +51,23 @@ const Hero = () => {
             Free Estimates & Advices All works Insured & Guaranteed.
           </p>
           <div className="flex flex-col xs:flex-row gap-2 md:gap-4">
-  <div className="flex items-center gap-2 bg-gradient-to-r from-amber-700/90 to-purple-800 hover:from-amber-800/90 hover:to-purple-900 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
-    <Phone size={isMobile ? 16 : 20} />
-    <span>Freephone : 07534482463</span>
-  </div>
-  <div className="flex items-center gap-2 bg-gradient-to-r from-amber-700/90 to-purple-800 hover:from-amber-800/90 hover:to-purple-900 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:scale-105 text-sm md:text-base">
-    <Phone size={isMobile ? 16 : 20} />
-    <span>Mobile : 07534482463</span>
-  </div>
-</div>
-
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 bg-gradient-to-r from-amber-700/90 to-purple-800 hover:from-amber-800/90 hover:to-purple-900 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:shadow-lg text-sm md:text-base group"
+            >
+              <Phone size={isMobile ? 16 : 20} className="group-hover:animate-bounce" />
+              <span>Freephone : 07534482463</span>
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 bg-gradient-to-r from-amber-700/90 to-purple-800 hover:from-amber-800/90 hover:to-purple-900 transition-all duration-300 px-4 py-2 md:px-6 md:py-3 rounded-md cursor-pointer hover:shadow-lg text-sm md:text-base group"
+            >
+              <Phone size={isMobile ? 16 : 20} className="group-hover:animate-bounce" />
+              <span>Mobile : 07534482463</span>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
