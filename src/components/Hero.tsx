@@ -47,7 +47,7 @@ const Hero = () => {
             Welcome To Truetop Roofing Ltd
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 drop-shadow-md hover:opacity-100 transition-opacity duration-300">
-            At JB Truetop And Building Ltd, we specialize in delivering top-quality roofing and
+            At Truetop Roofing Ltd, we specialize in delivering top-quality roofing and
             Free Estimates & Advices All works Insured & Guaranteed.
           </p>
           <div className="flex flex-col xs:flex-row gap-2 md:gap-4">
