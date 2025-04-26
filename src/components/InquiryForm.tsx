@@ -17,12 +17,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MessageSquare, Send } from "lucide-react";
 
+// 1. Update schema
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phone: z.string().min(10, { message: "Please enter a valid phone number" }),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+  image: z.any().optional(), // File input doesn't validate via Zod directly
+  video: z.any().optional(),
 });
+
 
 const InquiryForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,13 +36,28 @@ const InquiryForm = () => {
       email: "",
       phone: "",
       message: "",
+      image: undefined,
+      video: undefined,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    toast.success("Thank you for your inquiry! We'll get back to you soon.");
-    form.reset();
-  };
+ // 3. Update onSubmit handler
+const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const formData = new FormData();
+  formData.append("name", values.name);
+  formData.append("email", values.email);
+  formData.append("phone", values.phone);
+  formData.append("message", values.message);
+
+  if (values.image?.[0]) formData.append("image", values.image[0]);
+  if (values.video?.[0]) formData.append("video", values.video[0]);
+
+  // Here you would send formData to your backend with fetch or axios
+
+  toast.success("Thank you for your inquiry! We'll get back to you soon.");
+  form.reset();
+};
+
 
   return (
     <div className="py-16 px-6 md:px-20">
@@ -147,6 +166,45 @@ const InquiryForm = () => {
                     </FormItem>
                   )}
                 />
+
+                  <FormField
+                    control={form.control}
+                    name="image"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700">Upload Image</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => field.onChange(e.target.files)}
+                            className="bg-white/80"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="video"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700">Upload Video</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            accept="video/*"
+                            onChange={(e) => field.onChange(e.target.files)}
+                            className="bg-white/80"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
               </div>
 
               <Button

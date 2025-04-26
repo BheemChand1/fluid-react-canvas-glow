@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import ChooseUs from '@/components/ChooseUs';
 import InquiryForm from '@/components/InquiryForm';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import Testimonials from '@/components/Testimonials';
 
 const Index = () => {
   // Create emblaRef for the ServiceSection carousel
@@ -19,6 +20,7 @@ const Index = () => {
       <ServiceSection />
       <ChooseUs />
       <InquiryForm />
+      <Testimonials />
       <Footer />
       <WhatsAppButton />
     </div>
