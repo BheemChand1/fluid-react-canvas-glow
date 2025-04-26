@@ -52,10 +52,10 @@ const Navbar = () => {
             <span className="text-xs sm:text-sm">14 Central Avenue, Hounslow, TW32QH</span>
           </div>
           <div className="flex flex-wrap items-center gap-4 justify-center md:justify-end w-full">
-            <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
+            {/* <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Phone size={16} />
               <span className="text-xs sm:text-sm">Landline: +44 7946 750364</span>
-            </div>
+            </div> */}
             <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors">
               <Phone size={16} />
               <span className="text-xs sm:text-sm">Mobile: +44 7946 750364</span>
@@ -147,10 +147,10 @@ const Navbar = () => {
                 {/* Mobile Contact Info */}
                 <div className="mt-8 pt-8 border-t border-gray-200">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-gray-600">
+                    {/* <div className="flex items-center gap-2 text-gray-600">
                       <Phone size={18} />
                       <span>+44 7946 750364</span>
-                    </div>
+                    </div> */}
                     <div className="flex items-center gap-2 text-gray-600">
                       <Phone size={18} />
                       <span>+44 7946 750364</span>
