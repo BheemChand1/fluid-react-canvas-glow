@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const features = [
   {
@@ -63,9 +64,13 @@ const ChooseUs = () => {
               roofing and guttering services—we offer lasting peace of mind. Here’s why
               homeowners and businesses trust us:
             </p>
-            <button className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold px-6 py-2 rounded-full shadow-md">
-              Contact Us
-            </button>
+           <Link
+      to="/contact"
+      className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold px-6 py-2 rounded-full shadow-md inline-block"
+    >
+      Contact Us
+    </Link>
+
           </div>
         </div>
       </div>

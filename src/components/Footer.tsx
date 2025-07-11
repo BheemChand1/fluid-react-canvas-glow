@@ -35,7 +35,6 @@ const Footer = () => {
           {/* Services and Work */}
           <div className="space-y-8">
             <FooterServices />
-            <FooterWork />
           </div>
 
           {/* Inquiry Form */}

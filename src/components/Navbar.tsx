@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { Menu, Phone, Mail, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 import {
   DropdownMenu,
@@ -17,26 +18,50 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const services = [
-  "New roofs (slate / tile)",
-  "Roof repairs",
-  "UPVC fascias & guttering",
-  "GRP fibreglass flat roofing",
-  "Valleys repaired & renewed",
-  "Gutters cleaned & repaired",
-  "Chimneys rebuilt & repointed",
-  "Moss removed",
-  "Roof cleaning (jet washing)",
-  "All building work",
-  "Exterior pointing & rendering",
-  "All damp work undertaken",
-  "All flat roofs covered"
-];
+// const services = [
+//   "New roofs (slate / tile)",
+//   "Roof repairs",
+//   "UPVC fascias & guttering",
+//   "GRP fibreglass flat roofing",
+//   "Valleys repaired & renewed",
+//   "Gutters cleaned & repaired",
+//   "Chimneys rebuilt & repointed",
+//   "Moss removed",
+//   "Roof cleaning (jet washing)",
+//   "All building work",
+//   "Exterior pointing & rendering",
+//   "All damp work undertaken",
+//   "All flat roofs covered"
+// ];
 
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    // ...existing code...
+
+    // Fetch services from backend
+    const fetchServices = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/services`);
+        if (!response.ok) throw new Error("Failed to fetch services");
+        const data = await response.json();
+        console.log(data)
+    
+        setServices(data.data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+
+    fetchServices();
+
+    // ...existing code...
+  }, []);
 
   const handleServicesToggle = () => {
     setServicesOpen((prev) => !prev);
@@ -71,12 +96,14 @@ const Navbar = () => {
       {/* Main Navbar */}
       <nav className="bg-white py-2 px-2 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-4">
-  <img 
-    src="/lovable-uploads/0bf4ceeb-3214-40ab-9c20-ea04889b89a6.png" 
-    alt="JB Roofing Logo" 
-    className="h-20 w-auto object-contain" 
-  />
+          {/* Logo container with zero left margin on mobile */}
+          <div className="flex items-center ml-0">
+            <img 
+              src="/lovable-uploads/truetop logo short.png"
+              alt="TrueTop Roofing Logo" 
+              className="h-16 sm:h-20 w-auto object-contain" 
+              style={{ marginLeft: '-10px' }}
+            />
           </div>
 
           {/* Desktop Menu */}
@@ -89,8 +116,10 @@ const Navbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 {services.map((service) => (
-                  <DropdownMenuItem key={service} className="cursor-pointer hover:bg-purple-50">
-                    {service}
+                  <DropdownMenuItem key={service.id}  className="cursor-pointer hover:bg-purple-50">
+                   <Link to={`/services/${service.id}`} className="w-full flex items-center p-2">
+                      <span className="text-sm text-gray-800">{service.service_name}</span>
+                    </Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -134,13 +163,13 @@ const Navbar = () => {
                   >
                     <div className="ml-4 mt-2 flex flex-col gap-3">
                       {services.map((service) => (
-                        <a
-                          key={service}
-                          href="#"
+                        <Link
+                          key={service.id}
+                          to={`/services/${service.id}`}
                           className="text-gray-600 hover:text-purple-700 transition-colors py-1"
                         >
-                          {service}
-                        </a>
+                          {service.service_name}
+                        </Link>
                       ))}
                     </div>
                   </div>

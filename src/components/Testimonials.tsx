@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface Testimonial {
   id: number;
@@ -35,43 +35,76 @@ const testimonials: Testimonial[] = [
 const Testimonials: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [fade, setFade] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-        setFade(true);
-      }, 300);
-    }, 6000);
+    // Start the rotation if not paused
+    if (!isPaused) {
+      // Clear any existing interval first
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      
+      // Set up a new interval
+      intervalRef.current = setInterval(() => {
+        setFade(false);
+        setTimeout(() => {
+          setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+          setFade(true);
+        }, 300);
+      }, 3000);
+    }
 
-    return () => clearInterval(interval);
-  }, []);
+    // Clean up function
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isPaused]);
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    // Clear the interval when mouse enters
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+    // The interval will be restarted in the useEffect
+  };
 
   const testimonial = testimonials[currentTestimonial];
 
   return (
     <section className="py-20 bg-gray-200 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-200 via-gray-100 to-white">
       <div className="container mx-auto px-4">
-      <div className="text-center mb-12">
-  <div className="flex justify-center items-center gap-2 mb-3">
-    <img src="/google-icon.png" alt="Google" className="w-6 h-6" />
-    <span className="text-base font-medium text-gray-700">Google</span>
-    <span className="text-base font-medium text-gray-400">|</span>
-    <span className="text-base font-medium text-gray-700">Google Reviews</span>
-  </div>
-  <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">
-    What People Are Saying
-  </h2>
-  <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-    Honest feedback from our happy clients, straight from <span className="text-blue-600 font-medium">Google</span>.
-  </p>
-</div>
-
+        <div className="text-center mb-12">
+          <div className="flex justify-center items-center gap-2 mb-3">
+            <img src="/google-icon.png" alt="Google" className="w-6 h-6" />
+            <span className="text-base font-medium text-gray-700">Google</span>
+            <span className="text-base font-medium text-gray-400">|</span>
+            <span className="text-base font-medium text-gray-700">Google Reviews</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">
+            What People Are Saying
+          </h2>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            Honest feedback from our happy clients, straight from <span className="text-blue-600 font-medium">Google</span>.
+          </p>
+        </div>
 
         <div className="max-w-2xl mx-auto">
-          <div className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="bg-white bg-opacity-90 backdrop-blur-lg rounded-xl shadow-2xl p-8 border border-gray-200">
+          <div 
+            className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="bg-white bg-opacity-90 backdrop-blur-lg rounded-xl shadow-2xl p-8 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center mb-4">
                 <img
                   src={testimonial.avatar}
