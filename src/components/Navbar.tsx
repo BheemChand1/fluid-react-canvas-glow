@@ -98,12 +98,14 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo container with zero left margin on mobile */}
           <div className="flex items-center ml-0">
-            <img 
-              src="/lovable-uploads/truetop logo short.png"
-              alt="TrueTop Roofing Logo" 
-              className="h-16 sm:h-20 w-auto object-contain" 
-              style={{ marginLeft: '-10px' }}
-            />
+            <Link to="/">
+    <img 
+      src="/lovable-uploads/truetop-logo.png"
+      alt="TrueTop Roofing Logo" 
+      className="h-16 sm:h-20 w-auto object-contain" 
+      style={{ marginLeft: '-10px' }}
+    />
+  </Link>
           </div>
 
           {/* Desktop Menu */}
